@@ -100,6 +100,25 @@ class CourseManager extends React.Component {
   render() {
     return (
     <div>
+      {/*<div className="wbdv-sticky-nav-bar">*/}
+      {/*  <div className="row">*/}
+      {/*    <div className="col-1">*/}
+      {/*      <i className="fas fa-bars fa-2x"></i>*/}
+      {/*    </div>*/}
+      {/*    <div className="col-lg-3 col-md-1 d-none d-lg-block" style={{size:"21px"}}>*/}
+      {/*      Course Manager*/}
+      {/*    </div>*/}
+      {/*    <div className="col-lg-7 col-md-10 col-sm-10 col-xs-1">*/}
+      {/*      <input className="form-control" placeholder="New Course Title" i*/}
+      {/*             d="wbdv-new-course-title"*/}
+      {/*             onChange={this.onCourseChange}*/}
+      {/*             value={this.state.newCourse.title}/>*/}
+      {/*    </div>*/}
+      {/*    <div className="col-1">*/}
+      {/*      <i className="fas fa-plus-circle fa-2x float-right bottomRight" style={{color: 'red'}} onClick={this.addCourse}></i>*/}
+      {/*    </div>*/}
+      {/*  </div>*/}
+      {/*</div>*/}
       <Route path={"/courses/table"}>
         <div className="wbdv-sticky-nav-bar">
           <div className="row">
@@ -128,17 +147,38 @@ class CourseManager extends React.Component {
             <div className="col-1">
               <i className="fas fa-bars fa-2x"></i>
             </div>
-            <div className="col- " style={{size:"21px"}}>
+            <div className="col-lg-3 col-md-1 d-none d-lg-block" style={{size:"21px"}}>
               Course Manager
             </div>
-            <div className="col-8">
+            <div className="col-lg-7 col-md-10 col-sm-10 col-xs-1">
               <input className="form-control" placeholder="New Course Title" i
                      d="wbdv-new-course-title"
                      onChange={this.onCourseChange}
                      value={this.state.newCourse.title}/>
             </div>
             <div className="col-1">
-              <i className="fas fa-plus-circle fa-2x" style={{color: 'red'}} onClick={this.addCourse}></i>
+              <i className="fas fa-plus-circle fa-2x float-right" style={{color: 'red'}} onClick={this.addCourse}></i>
+            </div>
+          </div>
+        </div>
+      </Route>
+      <Route path={"/courses/editor"}>
+        <div className="wbdv-sticky-nav-bar">
+          <div className="row">
+            <div className="col-1">
+              <i className="fas fa-bars fa-2x"></i>
+            </div>
+            <div className="col-lg-3 col-md-1 d-none d-lg-block" style={{size:"21px"}}>
+              Course Manager
+            </div>
+            <div className="col-lg-7 col-md-10 col-sm-10 col-xs-1">
+              <input className="form-control" placeholder="New Course Title" i
+                     d="wbdv-new-course-title"
+                     onChange={this.onCourseChange}
+                     value={this.state.newCourse.title}/>
+            </div>
+            <div className="col-1">
+              <i className="fas fa-plus-circle fa-2x float-right" style={{color: 'red'}} onClick={this.addCourse}></i>
             </div>
           </div>
         </div>
@@ -155,6 +195,7 @@ class CourseManager extends React.Component {
       <div className="wbdv-react-grid">
       <Route path={"/courses/grid"}>
       <CourseGrid
+          updateCourse={this.updateCourse}
           deleteCourse={this.deleteCourse}
           courses = {this.state.courses}/>
       </Route>

@@ -2,7 +2,7 @@ import React from 'react'
 import CourseCard from "./course-card";
 import {Link, Route} from "react-router-dom";
 
-const CourseGrid = ({courses, deleteCourse}) =>{
+const CourseGrid = ({courses, deleteCourse,updateCourse}) =>{
   // const [newTitle, setNewTitle] =
   // const saveTitle = () => {
   //   setEditing(false)
@@ -40,6 +40,7 @@ const CourseGrid = ({courses, deleteCourse}) =>{
             deleteCourse={deleteCourse}
             course={course}
             key={ndx}
+            updateCourse={updateCourse}
         />
       )
     }

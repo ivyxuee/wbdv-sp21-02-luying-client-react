@@ -13,3 +13,9 @@
 .wbdv-react-grid {
   padding-top:30px;
 }
+
+.bottomRight{
+  position: absolute;
+  bottom: 0;
+  right:0;
+}

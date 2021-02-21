@@ -2,7 +2,7 @@ import React from 'react'
 
 const CourseEditor = ({history}) =>
     <div className="">
-      <i onClick={() => history.goBack()} className="fas fa-times float-right"></i>
+      <i onClick={() => history.goBack()} style={{color:"red"}} className="fas fa-times fa-2x float-left"></i>
       <div className="wbdv-nonesticky-nav-bar">
         <div className="row">
           {/*<div className="row" style="font-size: x-large">*/}
