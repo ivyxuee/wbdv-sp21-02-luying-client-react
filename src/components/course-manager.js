@@ -127,9 +127,11 @@ class CourseManager extends React.Component {
       <Route path={"/courses/table"}>
         <div className="wbdv-sticky-nav-bar">
           <div className="row">
+
             <div className="col-1">
-              <i className="fas fa-bars fa-2x"></i>
+                <Link to="/"><i className="fas fa-bars fa-2x"></i></Link>
             </div>
+
             <div className="col-lg-3 col-md-1 d-none d-lg-block" style={{size:"21px"}}>
               Course Manager
             </div>
@@ -150,7 +152,7 @@ class CourseManager extends React.Component {
         <div className="wbdv-sticky-nav-bar">
           <div className="row">
             <div className="col-1">
-              <i className="fas fa-bars fa-2x"></i>
+              <Link to="/"><i className="fas fa-bars fa-2x"></i></Link>
             </div>
             <div className="col-lg-3 col-md-1 d-none d-lg-block" style={{size:"21px"}}>
               Course Manager
@@ -171,7 +173,7 @@ class CourseManager extends React.Component {
         <div className="wbdv-sticky-nav-bar">
           <div className="row">
             <div className="col-1">
-              <i className="fas fa-bars fa-2x"></i>
+              <Link to="/"><i className="fas fa-bars fa-2x"></i></Link>
             </div>
             <div className="col-lg-3 col-md-1 d-none d-lg-block" style={{size:"21px"}}>
               Course Manager
