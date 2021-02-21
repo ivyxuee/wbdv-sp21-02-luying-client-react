@@ -86,18 +86,6 @@ class CourseManager extends React.Component {
     event.preventDefault()
   }
 
-  //   this.state.courses.push(newCourse)
-  //   this.setState(this.state)
-  // }
-  // deleteCourse = (courseToDelete) => {
-  //     deleteCourse(courseToDelete._id)
-  //     .then(status => {
-  //       const newCourses = this.state.courses
-  //       .filter(course => course !== courseToDelete)
-  //       this.setState({
-  //         courses: newCourses
-  //       })
-  //     })
     deleteCourse = (courseToDelete) => {
       courseService.deleteCourse(courseToDelete._id)
       .then(status => {
@@ -128,7 +116,7 @@ class CourseManager extends React.Component {
                      value={this.state.newCourse.title}/>
             </div>
             <div className="col-1">
-              <i className="fas fa-plus-circle fa-2x float-right" onClick={this.addCourse}></i>
+              <i className="fas fa-plus-circle fa-2x float-right" style={{color: 'red'}} onClick={this.addCourse}></i>
             </div>
           </div>
         </div>
@@ -147,7 +135,7 @@ class CourseManager extends React.Component {
               <input className="form-control" placeholder="New Course Title"/>
             </div>
             <div className="col-1">
-              <i className="fas fa-plus-circle fa-2x"></i>
+              <i className="fas fa-plus-circle fa-2x" style={{color: 'red'}}></i>
             </div>
           </div>
         </div>
@@ -173,7 +161,11 @@ class CourseManager extends React.Component {
       {/*</Route>*/}
       <Route path={"/courses/editor"} render={(props) => <CourseEditor {...props}/>}>
       </Route>
-
+      <a href="#">
+        <i onClick={this.addCourse}
+           className="fas fa-plus-circle fa-4x col-md-auto float-right"
+           style={{color: 'red'}}></i>
+      </a>
     </div>
     )
 }
