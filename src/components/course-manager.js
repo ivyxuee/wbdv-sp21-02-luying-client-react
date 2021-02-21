@@ -3,6 +3,7 @@ import CourseTable from "./course-table";
 import CourseGrid from "./course-grid";
 import CourseEditor from "./course-editor";
 import {Link, Route} from "react-router-dom";
+import courseService, {findAllCourses, deleteCourse,} from "../services/course-service";
 
 class CourseManager extends React.Component {
   state = {
@@ -12,7 +13,12 @@ class CourseManager extends React.Component {
     {title: "CS3", owner: "frank", lastModified: "2/3/45"},
     {title: "CS4", owner: "frank", lastModified: "2/3/45"}
   ]
-}
+  }
+
+  componentDidMount() {
+    courseService.findAllCourses().then(actualCourses => this.setState({courses: actualCourses}))
+  }
+
   addCourse = () => {
     var today = new Date()
     const date = (today.getMonth() + 1) + "/" +  + today.getDate() +  "/" + today.getFullYear();
@@ -24,10 +30,26 @@ class CourseManager extends React.Component {
     this.state.courses.push(newCourse)
     this.setState(this.state)
   }
-  deleteCourse = (courseToDelete) => {
-const newCourses = this.state.courses.filter(course => course != courseToDelete)
-    this.setState({courses: newCourses})
-  }
+  // deleteCourse = (courseToDelete) => {
+  //     deleteCourse(courseToDelete._id)
+  //     .then(status => {
+  //       const newCourses = this.state.courses
+  //       .filter(course => course !== courseToDelete)
+  //       this.setState({
+  //         courses: newCourses
+  //       })
+  //     })
+    deleteCourse = (courseToDelete) => {
+      courseService.deleteCourse(courseToDelete._id)
+      .then(status => {
+        this.setState((prevState) => ({
+          ...prevState,
+          courses: prevState.courses.filter
+          (course => course !== courseToDelete)
+        }))
+      })
+    }
+
   render() {
     return (
     <div>
