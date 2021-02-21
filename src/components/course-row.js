@@ -15,28 +15,39 @@ const CourseRow = (
     const [newTitle, setNewTitle] = useState(title)
     const saveTitle = () => {
       setEditing(false)
+      var today = new Date()
+      const date = (today.getMonth() + 1) + "/" + today.getDate() + "/"
+          + today.getFullYear()
       const newCourse = {
         ...course,
-        title: newTitle
+        title: newTitle,
+        lastModified: date
       }
       updateCourse(newCourse)
     }
     return (
       <tr>
-        <td>
-          {!editing && <Link to="/courses/editor">{title}</Link>}
+        <td >
+          {!editing &&
+            <Link to="/courses/editor">
+              <i className="fas fa-file-alt"></i>
+              {title}
+            </Link>
+          }
           {editing && <input
               onChange={(event) => setNewTitle(event.target.value)}
               value={newTitle}
               className="form-control"/>}
         </td>
-        <td>{owner}</td>
-        <td>{lastModified}</td>
-        <td>
-
-          <i className="fas fa-trash" onClick={() => deleteCourse(course)}></i>
+        {/*<td className="list-title-col-content-1 d-none d-lg-table-cell">me</td>*/}
+        <td className="d-none d-md-table-cell">{owner}</td>
+        <td className="d-none d-lg-table-cell">{lastModified}</td>
+        <td >
+          <span className="float-right">
+          {editing && <i className="fas fa-times"  style={{color:"rgb(217,83,79)"}} onClick={() => deleteCourse(course)}></i>}
           {!editing && <i onClick={() => setEditing(true)} className="fas fa-edit"></i>}
-          {editing && <i onClick={() => saveTitle()} className="fas fa-check"></i>}
+          {editing && <i onClick={() => saveTitle()} style={{color:"rgb(92,184,92)"}} className="fas fa-check"></i>}
+          </span>
         </td>
       </tr>
     )

@@ -6,13 +6,15 @@ import {Link, Route} from "react-router-dom";
 import courseService, {findAllCourses, deleteCourse,updateCourse} from "../services/course-service";
 
 class CourseManager extends React.Component {
+
   state = {
   courses : [
-    // {title: "CS1", owner: "frank", lastModified: "2/3/45"},
-    // {title: "CS2", owner: "frank", lastModified: "2/3/45"},
-    // {title: "CS3", owner: "frank", lastModified: "2/3/45"},
-    // {title: "CS4", owner: "frank", lastModified: "2/3/45"}
-  ]
+  ],
+  newCourse: {
+    title: "",
+    owner: "me",
+    lastModified:""
+  }
   }
 
   updateCourse = (course) => {
@@ -33,21 +35,57 @@ class CourseManager extends React.Component {
     courseService.findAllCourses().then(actualCourses => this.setState({courses: actualCourses}))
   }
 
-  addCourse = () => {
+  // addCourse = () => {
+  //   var today = new Date()
+  //   const date = (today.getMonth() + 1) + "/" + today.getDate() + "/"
+  //       + today.getFullYear()
+  //   const newCourse = {
+  //     title: "test course",
+  //     owner: "frank",
+  //     lastModified: date
+  //   }
+  //   courseService.createCourse(newCourse)
+  //   .then(course => this.setState(
+  //       (prevState) =>
+  //           ({...prevState, courses: [...prevState.courses, course]})
+  //   ))
+  // }
+  onCourseChange = (e) => {
+    const courseToAdd = this.state.newCourse
     var today = new Date()
     const date = (today.getMonth() + 1) + "/" + today.getDate() + "/"
-        + today.getFullYear();
-    const newCourse = {
-      title: "test course",
-      owner: "frank",
-      lastModified: date
-    }
-    courseService.createCourse(newCourse)
-    .then(course => this.setState(
-        (prevState) =>
-            ({...prevState, courses: [...prevState.courses, course]})
-    ))
+        + today.getFullYear()
+    this.setState({
+      newCourse: {
+        title: e.target.value,
+        owner: "me",
+        lastModified:date
+      }
+    })
   }
+
+
+  addCourse = (event) => {
+    const courseToAdd = this.state.newCourse
+    var today = new Date()
+    const date = (today.getMonth() + 1) + "/" + today.getDate() + "/"
+        + today.getFullYear()
+    courseService.createCourse(courseToAdd)
+    .then(course => this.setState(
+        (prevState) => ({
+          ...prevState,
+          courses: [
+            ...prevState.courses,
+            course
+          ]
+        })))
+    // this.state.courses.push(newCourse)
+    // this.setState(this.state)
+    this.setState({newCourse: {title: "", owner: "me",
+        lastModified:date}})
+    event.preventDefault()
+  }
+
   //   this.state.courses.push(newCourse)
   //   this.setState(this.state)
   // }
@@ -74,14 +112,56 @@ class CourseManager extends React.Component {
   render() {
     return (
     <div>
-      <h1>Course Manager</h1>
-      <button onClick={this.addCourse}>Add Course</button>
+      <Route path={"/courses/table"}>
+        <div className="wbdv-sticky-nav-bar">
+          <div className="row">
+            <div className="col-1">
+              <i className="fas fa-bars fa-2x"></i>
+            </div>
+            <div className="col-lg-3 col-md-1 d-none d-lg-block" style={{size:"21px"}}>
+              Course Manager
+            </div>
+            <div className="col-lg-7 col-md-10 col-sm-10 col-xs-1">
+              <input className="form-control" placeholder="New Course Title" i
+                     d="wbdv-new-course-title"
+                     onChange={this.onCourseChange}
+                     value={this.state.newCourse.title}/>
+            </div>
+            <div className="col-1">
+              <i className="fas fa-plus-circle fa-2x float-right" onClick={this.addCourse}></i>
+            </div>
+          </div>
+        </div>
+      </Route>
+      {/*<button onClick={this.addCourse}>Add Course</button>*/}
+      <Route path={"/courses/grid"}>
+        <div className="wbdv-sticky-nav-bar">
+          <div className="row">
+            <div className="col-1">
+              <i className="fas fa-bars fa-2x"></i>
+            </div>
+            <div className="col- " style={{size:"21px"}}>
+              Course Manager
+            </div>
+            <div className="col-8">
+              <input className="form-control" placeholder="New Course Title"/>
+            </div>
+            <div className="col-1">
+              <i className="fas fa-plus-circle fa-2x"></i>
+            </div>
+          </div>
+        </div>
+      </Route>
+      {/*<button onClick={this.addCourse}>Add Course</button>*/}
+      <div className="wbdv-react-table">
       <Route path={"/courses/table"}>
       <CourseTable
           updateCourse={this.updateCourse}
           deleteCourse={this.deleteCourse}
           courses = {this.state.courses}/>
       </Route>
+        </div>
+      <div className="wbdv-react-grid">
       <Route path={"/courses/grid"}>
       <CourseGrid
           deleteCourse={this.deleteCourse}
@@ -92,6 +172,7 @@ class CourseManager extends React.Component {
       {/*</Route>*/}
       <Route path={"/courses/editor"} render={(props) => <CourseEditor {...props}/>}>
       </Route>
+      </div>
     </div>
     )
 }
