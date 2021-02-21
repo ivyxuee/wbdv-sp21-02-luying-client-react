@@ -12,6 +12,10 @@ const CourseCard = ({deleteCourse, course, updateCourse}) => {
     }
     updateCourse(newCourse)
   }
+  const saveDelete = (course) => {
+    setEditing(false)
+    deleteCourse(course)
+  }
 
   return (<div className="col-sm-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
       <div className="card" >
@@ -36,7 +40,7 @@ const CourseCard = ({deleteCourse, course, updateCourse}) => {
           <Link to="/courses/editor" className="btn btn-primary">{course.title}</Link>
           {/*<i className="fas fa-trash" onClick={() => deleteCourse(course)}></i>*/}
           <span className="float-right">
-          {editing && <i className="fas fa-times"  style={{color:"rgb(217,83,79)"}} onClick={() => deleteCourse(course)}></i>}
+          {editing && <i className="fas fa-times"  style={{color:"rgb(217,83,79)"}} onClick={() => saveDelete(course)}></i>}
             {!editing && <i onClick={() => setEditing(true)} className="fas fa-edit"></i>}
             {editing && <i onClick={() => saveTitle()} style={{color:"rgb(92,184,92)"}} className="fas fa-check"></i>}
           </span>

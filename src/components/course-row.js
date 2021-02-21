@@ -25,6 +25,10 @@ const CourseRow = (
       }
       updateCourse(newCourse)
     }
+    const saveDelete = (course) => {
+      setEditing(false)
+      deleteCourse(course)
+    }
     return (
       <tr>
         <td >
@@ -44,7 +48,7 @@ const CourseRow = (
         <td className="d-none d-lg-table-cell">{lastModified}</td>
         <td >
           <span className="float-right">
-          {editing && <i className="fas fa-times"  style={{color:"rgb(217,83,79)"}} onClick={() => deleteCourse(course)}></i>}
+          {editing && <i className="fas fa-times"  style={{color:"rgb(217,83,79)"}} onClick={() => saveDelete(course)}></i>}
           {!editing && <i onClick={() => setEditing(true)} className="fas fa-edit"></i>}
           {editing && <i onClick={() => saveTitle()} style={{color:"rgb(92,184,92)"}} className="fas fa-check"></i>}
           </span>

@@ -6,14 +6,19 @@ import {Link, Route} from "react-router-dom";
 import courseService, {findAllCourses, deleteCourse,updateCourse} from "../services/course-service";
 
 class CourseManager extends React.Component {
-
+  newDate = () => {
+    var today = new Date()
+    const date = (today.getMonth() + 1) + "/" + today.getDate() + "/"
+        + today.getFullYear()
+    return date
+  }
   state = {
   courses : [
   ],
   newCourse: {
     title: "",
     owner: "me",
-    lastModified:""
+    lastModified:this.newDate()
   }
   }
 
