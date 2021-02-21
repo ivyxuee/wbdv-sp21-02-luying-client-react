@@ -10,6 +10,7 @@ export default class CourseTable extends React.Component{
   render() {
     return (
       <div>
+        <a href="/courses/grid"> <i className="fas fa-2x fa-th float-right"></i></a>
         <h2>Course Table</h2>
         <table className='table'>
           <tbody>
