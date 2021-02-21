@@ -19,7 +19,9 @@ const CourseGrid = ({courses, deleteCourse}) =>{
     return (<div>
     <div className="row">
       <div className="col-xl-4 col-lg-4 col-md-4  d-none d-md-block"><h5>Recent Documents</h5></div>
-      <div className="col-xl-4 col-lg-4 col-md-4 d-none d-md-block"><h5>Owned by me</h5></div>
+      <div className="col-xl-4 col-lg-4 col-md-4 d-none d-md-block">
+        <h5>Owned by me <i className="fas fa-angle-down"></i></h5>
+      </div>
       <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12 ">
         <span className="float-right">
           <i className="fas fa-folder fa-2x "></i>

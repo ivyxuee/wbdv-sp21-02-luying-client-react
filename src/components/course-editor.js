@@ -1,11 +1,8 @@
 import React from 'react'
 
 const CourseEditor = ({history}) =>
-    <div className="container-fluid">
-      <i className="fas fa-arrow-left"></i>
-      <h2>Course Editor</h2>
+    <div className="">
       <i onClick={() => history.goBack()} className="fas fa-times float-right"></i>
-
       <div className="wbdv-nonesticky-nav-bar">
         <div className="row">
           {/*<div className="row" style="font-size: x-large">*/}
