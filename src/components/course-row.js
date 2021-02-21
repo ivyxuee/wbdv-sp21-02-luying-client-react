@@ -1,8 +1,12 @@
 import React from "react"
+import {Link} from "react-router-dom";
 
 const CourseRow = ({lastModified,course, title, owner,deleteCourse}) =>
     <tr>
-      <td>{title}</td>
+
+      <td>
+        <Link to="/courses/editor">{title}</Link>
+      </td>
       <td>{owner}</td>
       <td>{lastModified}</td>
       <td>
