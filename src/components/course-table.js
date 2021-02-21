@@ -6,33 +6,25 @@ export default class CourseTable extends React.Component{
     super(props);
 
   }
-  addCourse = () => {
-    var today = new Date()
-    const date = (today.getMonth() + 1) + "/" +  + today.getDate() +  "/" + today.getFullYear();
-    const newCourse = {
-      title:"test course",
-      owner: "frank",
-      lastModified: date
-    }
-    this.props.courses.push(newCourse)
-    this.setState(this.props)
-  }
 
   render() {
     return (
       <div>
         <h2>Course Table</h2>
         <table className='table'>
-          <button onClick={this.addCourse}>Add Course</button>
+          <tbody>
           {
             this.props.courses.map((course,ndx) =>
                 <CourseRow
+                    deleteCourse={this.props.deleteCourse}
                     key={ndx}
+                    course={course}
                     title={course.title}
                     lastModified={course.lastModified}
                     owner={course.owner}
                 />)
           }
+          </tbody>
         </table>
       </div>
     )

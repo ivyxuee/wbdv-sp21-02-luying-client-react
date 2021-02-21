@@ -1,21 +1,18 @@
 import React from 'react'
+import CourseCard from "./course-card";
 
-const CourseGrid = ({courses}) =>
+const CourseGrid = ({courses, deleteCourse}) =>
   <div>
     <h2>Course Grid</h2>
     <div className="row">
     {
-      courses.map(course =>
-          <div className="col-4">
-          <div className="card" style={{width:"18rem"}}>
-        <div className="card-body">
-          <h5 className="card-title">Card title</h5>
-          <p className="card-text">Some quick example text to build on the card
-            title and make up the bulk of the card's content.</p>
-          <a href="#" className="btn btn-primary">Go somewhere</a>
-        </div>
-          </div>
-      </div>)
+      courses.map((course,ndx) =>
+        <CourseCard
+            deleteCourse={deleteCourse}
+            course={course}
+            key={ndx}
+        />
+      )
     }
     </div>
   </div>
