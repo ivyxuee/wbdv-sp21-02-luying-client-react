@@ -132,10 +132,13 @@ class CourseManager extends React.Component {
               Course Manager
             </div>
             <div className="col-8">
-              <input className="form-control" placeholder="New Course Title"/>
+              <input className="form-control" placeholder="New Course Title" i
+                     d="wbdv-new-course-title"
+                     onChange={this.onCourseChange}
+                     value={this.state.newCourse.title}/>
             </div>
             <div className="col-1">
-              <i className="fas fa-plus-circle fa-2x" style={{color: 'red'}}></i>
+              <i className="fas fa-plus-circle fa-2x" style={{color: 'red'}} onClick={this.addCourse}></i>
             </div>
           </div>
         </div>
