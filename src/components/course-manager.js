@@ -3,16 +3,30 @@ import CourseTable from "./course-table";
 import CourseGrid from "./course-grid";
 import CourseEditor from "./course-editor";
 import {Link, Route} from "react-router-dom";
-import courseService, {findAllCourses, deleteCourse,} from "../services/course-service";
+import courseService, {findAllCourses, deleteCourse,updateCourse} from "../services/course-service";
 
 class CourseManager extends React.Component {
   state = {
   courses : [
-    {title: "CS1", owner: "frank", lastModified: "2/3/45"},
-    {title: "CS2", owner: "frank", lastModified: "2/3/45"},
-    {title: "CS3", owner: "frank", lastModified: "2/3/45"},
-    {title: "CS4", owner: "frank", lastModified: "2/3/45"}
+    // {title: "CS1", owner: "frank", lastModified: "2/3/45"},
+    // {title: "CS2", owner: "frank", lastModified: "2/3/45"},
+    // {title: "CS3", owner: "frank", lastModified: "2/3/45"},
+    // {title: "CS4", owner: "frank", lastModified: "2/3/45"}
   ]
+  }
+
+  updateCourse = (course) => {
+    console.log(course)
+    courseService.updateCourse(course._id, course).then(
+        status => this.setState(
+            (prevStatus) => ({
+              ...prevStatus,
+              courses: prevStatus.courses.map(c =>
+                 c._id === course._id ? course : c
+              )
+            })
+        )
+    )
   }
 
   componentDidMount() {
@@ -21,15 +35,22 @@ class CourseManager extends React.Component {
 
   addCourse = () => {
     var today = new Date()
-    const date = (today.getMonth() + 1) + "/" +  + today.getDate() +  "/" + today.getFullYear();
+    const date = (today.getMonth() + 1) + "/" + today.getDate() + "/"
+        + today.getFullYear();
     const newCourse = {
-      title:"test course",
+      title: "test course",
       owner: "frank",
       lastModified: date
     }
-    this.state.courses.push(newCourse)
-    this.setState(this.state)
+    courseService.createCourse(newCourse)
+    .then(course => this.setState(
+        (prevState) =>
+            ({...prevState, courses: [...prevState.courses, course]})
+    ))
   }
+  //   this.state.courses.push(newCourse)
+  //   this.setState(this.state)
+  // }
   // deleteCourse = (courseToDelete) => {
   //     deleteCourse(courseToDelete._id)
   //     .then(status => {
@@ -57,6 +78,7 @@ class CourseManager extends React.Component {
       <button onClick={this.addCourse}>Add Course</button>
       <Route path={"/courses/table"}>
       <CourseTable
+          updateCourse={this.updateCourse}
           deleteCourse={this.deleteCourse}
           courses = {this.state.courses}/>
       </Route>
