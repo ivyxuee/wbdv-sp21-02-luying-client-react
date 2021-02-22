@@ -39,7 +39,7 @@ const CourseGrid = ({courses, deleteCourse,updateCourse}) =>{
         <CourseCard
             deleteCourse={deleteCourse}
             course={course}
-            key={ndx}
+            key={course._id}
             updateCourse={updateCourse}
         />
       )

@@ -105,25 +105,6 @@ class CourseManager extends React.Component {
   render() {
     return (
     <div>
-      {/*<div className="wbdv-sticky-nav-bar">*/}
-      {/*  <div className="row">*/}
-      {/*    <div className="col-1">*/}
-      {/*      <i className="fas fa-bars fa-2x"></i>*/}
-      {/*    </div>*/}
-      {/*    <div className="col-lg-3 col-md-1 d-none d-lg-block" style={{size:"21px"}}>*/}
-      {/*      Course Manager*/}
-      {/*    </div>*/}
-      {/*    <div className="col-lg-7 col-md-10 col-sm-10 col-xs-1">*/}
-      {/*      <input className="form-control" placeholder="New Course Title" i*/}
-      {/*             d="wbdv-new-course-title"*/}
-      {/*             onChange={this.onCourseChange}*/}
-      {/*             value={this.state.newCourse.title}/>*/}
-      {/*    </div>*/}
-      {/*    <div className="col-1">*/}
-      {/*      <i className="fas fa-plus-circle fa-2x float-right bottomRight" style={{color: 'red'}} onClick={this.addCourse}></i>*/}
-      {/*    </div>*/}
-      {/*  </div>*/}
-      {/*</div>*/}
       <Route path={"/courses/table"}>
         <div className="wbdv-sticky-nav-bar">
           <div className="row">
@@ -133,7 +114,7 @@ class CourseManager extends React.Component {
             </div>
 
             <div className="col-lg-3 col-md-1 d-none d-lg-block" style={{size:"21px"}}>
-              Course Manager
+              <h5>Course Manager</h5>
             </div>
             <div className="col-lg-7 col-md-10 col-sm-10 col-xs-1">
               <input className="form-control" placeholder="New Course Title" i
@@ -155,7 +136,7 @@ class CourseManager extends React.Component {
               <Link to="/"><i className="fas fa-bars fa-2x"></i></Link>
             </div>
             <div className="col-lg-3 col-md-1 d-none d-lg-block" style={{size:"21px"}}>
-              Course Manager
+              <h5>Course Manager</h5>
             </div>
             <div className="col-lg-7 col-md-10 col-sm-10 col-xs-1">
               <input className="form-control" placeholder="New Course Title" i
@@ -176,7 +157,7 @@ class CourseManager extends React.Component {
               <Link to="/"><i className="fas fa-bars fa-2x"></i></Link>
             </div>
             <div className="col-lg-3 col-md-1 d-none d-lg-block" style={{size:"21px"}}>
-              Course Manager
+              <h5>Course Manager</h5>
             </div>
             <div className="col-lg-7 col-md-10 col-sm-10 col-xs-1">
               <input className="form-control" placeholder="New Course Title" i
@@ -214,7 +195,7 @@ class CourseManager extends React.Component {
       </Route>
       <a href="#">
         <i onClick={this.addCourse}
-           className="fas fa-plus-circle fa-4x col-md-auto float-right"
+           className="fas fa-plus-circle fa-4x float-right"
            style={{color: 'red'}}></i>
       </a>
     </div>
