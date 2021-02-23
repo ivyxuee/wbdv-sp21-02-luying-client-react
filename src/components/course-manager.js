@@ -71,10 +71,17 @@ class CourseManager extends React.Component {
 
 
   addCourse = (event) => {
-    const courseToAdd = this.state.newCourse
+    let courseToAdd = this.state.newCourse
     var today = new Date()
     const date = (today.getMonth() + 1) + "/" + today.getDate() + "/"
         + today.getFullYear()
+    if (this.state.newCourse.title.trim() === "") {
+      courseToAdd = {
+        title: "New Course",
+        owner: "me",
+        lastModified: date
+      }
+    }
     courseService.createCourse(courseToAdd)
     .then(course => this.setState(
         (prevState) => ({
