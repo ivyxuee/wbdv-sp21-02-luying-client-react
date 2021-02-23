@@ -9,6 +9,9 @@ export const createCourse = (course) =>  fetch(COURSES_URL, {
     'content-type': 'application/json'
   }
   }).then(response => response.json())
+export const findCourseById = (courseId) =>
+    fetch(`${COURSES_URL}/${courseId}`)
+    .then(response => response.json())
 export const deleteCourse = (courseId) =>
     fetch(`${COURSES_URL}/${courseId}`, {method: 'DELETE'})
     .then(response => response.json())
