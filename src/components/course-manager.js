@@ -163,17 +163,10 @@ class CourseManager extends React.Component {
             <div className="col-1">
               <Link to="/"><i className="fas fa-bars fa-2x"></i></Link>
             </div>
-            <div className="col-lg-3 col-md-1 d-none d-lg-block" style={{size:"21px"}}>
-              <h5>Course Manager</h5>
+            <div className="col-4">
             </div>
-            <div className="col-lg-7 col-md-10 col-sm-10 col-xs-1">
-              <input className="form-control" placeholder="New Course Title" i
-                     d="wbdv-new-course-title"
-                     onChange={this.onCourseChange}
-                     value={this.state.newCourse.title}/>
-            </div>
-            <div className="col-1">
-              <i className="fas fa-plus-circle fa-2x float-right" style={{color: 'red'}} onClick={this.addCourse}></i>
+            <div className="col-6" style={{size:"21px"}}>
+              <h4>Course Editor</h4>
             </div>
           </div>
         </div>
@@ -200,11 +193,16 @@ class CourseManager extends React.Component {
       {/*</Route>*/}
       <Route path={"/courses/editor"} render={(props) => <CourseEditor {...props}/>}>
       </Route>
-      <a href="#">
+      <Route path={"/courses/table"}><a href="#">
         <i onClick={this.addCourse}
            className="fas fa-plus-circle fa-4x float-right"
            style={{color: 'red'}}></i>
-      </a>
+      </a></Route>
+      <Route path={"/courses/grid"}><a href="#">
+        <i onClick={this.addCourse}
+           className="fas fa-plus-circle fa-4x float-right"
+           style={{color: 'red'}}></i>
+      </a></Route>
     </div>
     )
 }
