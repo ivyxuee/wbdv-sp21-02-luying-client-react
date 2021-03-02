@@ -1,5 +1,5 @@
 import React from 'react'
-import {BrowserRouter, useParams} from "react-router-dom";
+import {BrowserRouter, useParams, Link, Route} from "react-router-dom";
 import ModuleList from "./module-list";
 import {combineReducers, createStore} from "redux";
 import moduleReducer from "../reducers/modules-reducer";
@@ -16,12 +16,12 @@ const reducer = combineReducers({
 })
 const store = createStore(reducer)
 const CourseEditor = ({history}) => {
-  const {courseId} = useParams();
+  const {courseId, moduleId} = useParams();
   return(
       <Provider store={store}>
         <div >
           <i onClick={() => history.goBack()} style={{color:"red"}} className="fas fa-times fa-2x float-left"></i>
-          {courseId}
+          {courseId} {moduleId}
           <div className="wbdv-nonesticky-nav-bar">
             <div className="row">
               <div className="col-1" style={{size:"x-large"}}>
