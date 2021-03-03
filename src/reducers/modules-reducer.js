@@ -1,8 +1,5 @@
 const initialState = {
   modules: [
-    {_id:123, title:"Module 123"},
-    {_id:456, title:"Module 456"},
-    {_id:789, title:"Module 789"}
   ]
 }
 
@@ -17,10 +14,8 @@ const moduleReducer = (state = initialState, action) => {
       alert("create a new module")
       const newState1 =  {
        modules:[ ...state.modules,
-         {
-           title: "New module",
-          _id: (new Date()).getTime()
-         }]
+           action.module
+         ]
       }
       return newState1
     case "DELETE_MODULE":
