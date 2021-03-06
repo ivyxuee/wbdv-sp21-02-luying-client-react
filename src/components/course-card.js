@@ -37,7 +37,10 @@ const CourseCard = ({deleteCourse, course, updateCourse}) => {
           {/*<h5 className="card-title">{course.title}</h5>*/}
           <p className="card-text">Some quick example text to build on the card
             title and make up the bulk of the card's content.</p>
-          <Link to="/courses/editor" className="btn btn-primary">{course.title}</Link>
+          <Link to={`/courses/grid/editor/${course._id}`}>
+            <i className="btn btn-primary">{course.title}</i>
+          </Link>
+          {/*<Link to="/courses/editor" className="btn btn-primary">{course.title}</Link>*/}
           {/*<i className="fas fa-trash" onClick={() => deleteCourse(course)}></i>*/}
           <span className="float-right">
           {editing && <i className="fas fa-times"  style={{color:"rgb(217,83,79)"}} onClick={() => saveDelete(course)}></i>}

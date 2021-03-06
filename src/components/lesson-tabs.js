@@ -2,32 +2,38 @@ import React,{useEffect} from 'react'
 import {connect} from "react-redux"
 import EditableItem from "./editable-item"
 import {useParams} from "react-router-dom"
-import lessonService, {createLessonForModule} from "../services/lesson-service"
+import lessonService from "../services/lesson-service"
+import moduleService from "../services/module-service";
 
 const LessonTabs = ({
   lessons=[
-      {_id:9998, title:"Lesson A"},
-      {_id:4565, title:"Lesson B"},
-      {_id:6789, title:"Lesson C"}
       ],
   findLessonsForModule,
-  createLessonForModule
+  createLessonForModule,
+  deleteLesson,
+  updateLesson,
+  setLessonsToEmpty
 }) => {
-  const {courseId, moduleId,lessonId} = useParams();
+  const {layout,courseId, moduleId,lessonId} = useParams();
+  console.log(layout)
   useEffect(() => {
     if(moduleId !== "undefined" && typeof moduleId !== "undefined") {
       findLessonsForModule(moduleId)
+    } else {
+      setLessonsToEmpty(moduleId)
     }
-  }, [moduleId])
+  }, [moduleId, courseId])
   return(
       <div>
-        <h2>Lessons{moduleId}</h2>
-        <ul className="nav nav-pills">
+        <h2>{moduleId}'s lesson</h2>
+        <ul className="nav nav-tabs">
           {
             lessons.map(lesson =>
                 <li className="nav-item active">
                     <EditableItem
-                        to={`/courses/editor/${courseId}/${moduleId}/${lesson._id}`}
+                        to={`/courses/${layout}/editor/${courseId}/${moduleId}/${lesson._id}`}
+                        deleteItem={deleteLesson}
+                        updateItem={updateLesson}
                         item={lesson}
                         active={lesson._id === lessonId}/>
                 </li>
@@ -44,7 +50,8 @@ const stpm =(state) => ({
   lessons: state.lessonReducer.lessons
 })
 
-const dtpm =(dispatch) =>({
+const dtpm =(dispatch) => {
+  return {
     findLessonsForModule: (moduleId) => {
       console.log(moduleId)
       lessonService.findLessonsForModule(moduleId).then(lessons => dispatch({
@@ -52,12 +59,40 @@ const dtpm =(dispatch) =>({
         lessons: lessons
       }))
     },
-    createLessonForModule:(moduleId) => {
-      alert("create new lesson!")
-      lessonService.createLessonForModule(moduleId, {title: "New Lesson"}).then(lesson => dispatch({
-        type: "CREATE_LESSON",
-        lesson: lesson
-      }))
+    createLessonForModule: (moduleId) => {
+
+      if(!(moduleId !== "undefined" && typeof moduleId !== "undefined")) {
+        alert("Invalid operation. You have to select the module first!")
+      }
+      else{
+        alert(`create new lesson!${moduleId}`)
+        lessonService.createLessonForModule(moduleId, {title: "New Lesson"}).then(
+          lesson => dispatch({
+            type: "CREATE_LESSON",
+            lesson: lesson
+          }))}
+    },
+    deleteLesson: (lesson) => {
+      alert("delete existed lesson!")
+      lessonService.deleteLesson(lesson._id).then( status => dispatch(
+          {
+            type: "DELETE_LESSON",
+            lessonToDelete: lesson
+          }
+      ))
+    },
+    updateLesson: (lesson) => {
+      lessonService.updateLesson(lesson._id, lesson).then(status => dispatch({
+            type: "UPDATE_LESSON",
+            lesson: lesson
+          })
+      )
+    },
+    setLessonsToEmpty: (lessonId) => {
+      dispatch({
+        type: "CLEAN_LESSONS"
+      })
     }
-})
+  }
+}
 export default connect(stpm,dtpm)(LessonTabs)

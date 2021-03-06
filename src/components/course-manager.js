@@ -112,7 +112,7 @@ class CourseManager extends React.Component {
   render() {
     return (
     <div>
-      <Route path={"/courses/table"}>
+      <Route path={"/courses/table"} exact>
         <div className="wbdv-sticky-nav-bar">
           <div className="row">
 
@@ -157,7 +157,7 @@ class CourseManager extends React.Component {
           </div>
         </div>
       </Route>
-      <Route path={"/courses/editor"}>
+      <Route path={"/courses/:layout/editor"}>
         <div className="wbdv-sticky-nav-bar">
           <div className="row">
             <div className="col-1">
@@ -173,7 +173,7 @@ class CourseManager extends React.Component {
       </Route>
       {/*<button onClick={this.addCourse}>Add Course</button>*/}
       <div className="wbdv-react-table">
-      <Route path={"/courses/table"}>
+      <Route path="/courses/table" exact>
       <CourseTable
           updateCourse={this.updateCourse}
           deleteCourse={this.deleteCourse}
@@ -181,7 +181,7 @@ class CourseManager extends React.Component {
       </Route>
         </div>
       <div className="wbdv-react-grid">
-      <Route path={"/courses/grid"}>
+      <Route path="/courses/grid" exact>
       <CourseGrid
           updateCourse={this.updateCourse}
           deleteCourse={this.deleteCourse}
@@ -191,15 +191,15 @@ class CourseManager extends React.Component {
       {/*<Route path={"/courses/editor"}>*/}
       {/*<CourseEditor />*/}
       {/*</Route>*/}
-      <Route path={["/courses/editor/:courseId/:moduleId/:lessonId","/courses/editor/:courseId/:moduleId","/courses/editor/:courseId"]}
+      <Route path={["/courses/:layout/editor/:courseId/:moduleId/:lessonId/:topicId","/courses/:layout/editor/:courseId/:moduleId/:lessonId","/courses/:layout/editor/:courseId/:moduleId","/courses/:layout/editor/:courseId"]}
              render={(props) => <CourseEditor {...props}/>}>
       </Route>
-      <Route path={"/courses/table"}><a href="#">
+      <Route path="/courses/table" exact><a href="#">
         <i onClick={this.addCourse}
            className="fas fa-plus-circle fa-4x float-right"
            style={{color: 'red'}}></i>
       </a></Route>
-      <Route path={"/courses/grid"}><a href="#">
+      <Route path="/courses/grid" exact><a href="#">
         <i onClick={this.addCourse}
            className="fas fa-plus-circle fa-4x float-right"
            style={{color: 'red'}}></i>

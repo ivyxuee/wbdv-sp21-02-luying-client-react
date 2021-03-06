@@ -33,7 +33,7 @@ const CourseRow = (
       <tr>
         <td >
           {!editing &&
-            <Link to={`/courses/editor/${course._id}`}>
+            <Link to={`/courses/table/editor/${course._id}`}>
               <i className="fas fa-file-alt"></i>
               {title}
             </Link>

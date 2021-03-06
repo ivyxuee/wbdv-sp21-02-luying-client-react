@@ -12,17 +12,18 @@ const ModuleList = (
       updateModule=(module) => alert("update"),
       findModulesForCourse=(courseId) => console.log(courseId)
     }) => {
-  const {courseId, moduleId} = useParams();
+  const {layout,courseId, moduleId} = useParams();
+  console.log(layout)
   useEffect(() => {
     findModulesForCourse(courseId)
   }, [])
   return(
         <div>
-          <h2>Modules {myModules.length} {courseId}</h2>
+          <h2>Modules</h2>
           <ul className="list-group">
             {myModules.map(module =>
             <li className={`list-group-item ${module._id === moduleId ? 'active': ""}`}>
-              <EditableItem to={`/courses/editor/${courseId}/${module._id}`} deleteItem={deleteModule} updateItem={updateModule} item={module}/>
+              <EditableItem to={`/courses/${layout}/editor/${courseId}/${module._id}`} deleteItem={deleteModule} updateItem={updateModule} item={module}/>
             </li>
             )}
             <li className="list-group-item">
@@ -56,7 +57,7 @@ const dtpm = (dispatch) => {
         moduleService.updateModule(module._id, module)
         .then(status => dispatch({
           type: "UPDATE_MODULE",
-          module
+          module: module
         })),
     findModulesForCourse: (courseId) => {
       moduleService.findModulesForCourse(courseId)
