@@ -30,7 +30,7 @@ const LessonTabs = ({
   //     , [moduleId])
   return(
       <div>
-        {moduleName.title != "" && <><h2>{moduleName.title}'s lesson</h2></>}
+        {moduleName.title != "" && <><h2>{moduleName.title}'s lessons</h2></>}
         {moduleName.title === "" && <><h2>Please select module</h2></>}
         <ul className="nav nav-tabs">
           {
