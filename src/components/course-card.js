@@ -37,7 +37,7 @@ const CourseCard = ({deleteCourse, course, updateCourse}) => {
           {/*<h5 className="card-title">{course.title}</h5>*/}
           <p className="card-text">Some quick example text to build on the card
             title and make up the bulk of the card's content.</p>
-          <Link to={`/courses/grid/editor/${course._id}`}>
+          <Link to={`/courses/grid/editor/${course._id}/modules`}>
             <i className="btn btn-primary">{course.title}</i>
           </Link>
           {/*<Link to="/courses/editor" className="btn btn-primary">{course.title}</Link>*/}
