@@ -1,7 +1,7 @@
 import React from 'react'
 import CourseTable from "./course-table";
 import CourseGrid from "./course-grid";
-import CourseEditor from "./course-editor";
+import CourseEditor from "./course-editor/course-editor";
 import {Link, Route} from "react-router-dom";
 import courseService, {findAllCourses, deleteCourse,updateCourse} from "../services/course-service";
 
@@ -40,21 +40,6 @@ class CourseManager extends React.Component {
     courseService.findAllCourses().then(actualCourses => this.setState({courses: actualCourses}))
   }
 
-  // addCourse = () => {
-  //   var today = new Date()
-  //   const date = (today.getMonth() + 1) + "/" + today.getDate() + "/"
-  //       + today.getFullYear()
-  //   const newCourse = {
-  //     title: "test course",
-  //     owner: "frank",
-  //     lastModified: date
-  //   }
-  //   courseService.createCourse(newCourse)
-  //   .then(course => this.setState(
-  //       (prevState) =>
-  //           ({...prevState, courses: [...prevState.courses, course]})
-  //   ))
-  // }
   onCourseChange = (e) => {
     const courseToAdd = this.state.newCourse
     var today = new Date()
@@ -136,7 +121,7 @@ class CourseManager extends React.Component {
         </div>
       </Route>
       {/*<button onClick={this.addCourse}>Add Course</button>*/}
-      <Route path={"/courses/grid"}>
+      <Route path={"/courses/grid"} exact>
         <div className="wbdv-sticky-nav-bar">
           <div className="row">
             <div className="col-1">
@@ -157,20 +142,20 @@ class CourseManager extends React.Component {
           </div>
         </div>
       </Route>
-      <Route path={"/courses/:layout/editor"}>
-        <div className="wbdv-sticky-nav-bar">
-          <div className="row">
-            <div className="col-1">
-              <Link to="/"><i className="fas fa-bars fa-2x"></i></Link>
-            </div>
-            <div className="col-4">
-            </div>
-            <div className="col-6" style={{size:"21px"}}>
-              <h4>Course Editor</h4>
-            </div>
-          </div>
-        </div>
-      </Route>
+      {/*<Route path={"/courses/:layout/editor"}>*/}
+      {/*  <div className="wbdv-sticky-nav-bar">*/}
+      {/*    <div className="row">*/}
+      {/*      <div className="col-1">*/}
+      {/*        <Link to="/"><i className="fas fa-bars fa-2x"></i></Link>*/}
+      {/*      </div>*/}
+      {/*      <div className="col-4">*/}
+      {/*      </div>*/}
+      {/*      <div className="col-6" style={{size:"21px"}}>*/}
+      {/*        <h4>Course Editor</h4>*/}
+      {/*      </div>*/}
+      {/*    </div>*/}
+      {/*  </div>*/}
+      {/*</Route>*/}
       {/*<button onClick={this.addCourse}>Add Course</button>*/}
       <div className="wbdv-react-table">
       <Route path="/courses/table" exact>

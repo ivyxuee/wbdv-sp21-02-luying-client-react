@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
-import EditableItem from "./editable-item";
+import EditableItem from "../editable-item";
 import {useParams} from "react-router-dom";
-import moduleService from "../services/module-service"
+import moduleService from "../../services/module-service"
 
 const ModuleList = (
     {
