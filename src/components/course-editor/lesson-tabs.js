@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React,{useEffect,useState} from 'react'
 import {connect} from "react-redux"
 import EditableItem from "../editable-item"
 import {useParams} from "react-router-dom"
@@ -15,21 +15,27 @@ const LessonTabs = ({
   setLessonsToEmpty
 }) => {
   const {layout,courseId, moduleId,lessonId} = useParams();
+  const [moduleName, setModuleName] = useState({title:""})
   console.log(layout)
   useEffect(() => {
     if(moduleId !== "undefined" && typeof moduleId !== "undefined") {
-      findLessonsForModule(moduleId)
+      findLessonsForModule(moduleId);
+      moduleService.findModuleById(moduleId).then(module => setModuleName({title:module.title}))
     } else {
       setLessonsToEmpty(moduleId)
     }
   }, [moduleId, courseId])
+
+  // useEffect(() => {moduleService.findModuleById(moduleId).then(module => setModuleName({title:module.title}))}
+  //     , [moduleId])
   return(
       <div>
-        <h2>{moduleId}'s lesson</h2>
+        {moduleName.title != "" && <><h2>{moduleName.title}'s lesson</h2></>}
+        {moduleName.title === "" && <><h2>Please select module</h2></>}
         <ul className="nav nav-tabs">
           {
             lessons.map(lesson =>
-                <li className="nav-item active">
+                <li className="nav-item active" key={lesson._id}>
                     <EditableItem
                         to={`/courses/${layout}/editor/${courseId}/modules/${moduleId}/lessons/${lesson._id}/topics`}
                         deleteItem={deleteLesson}
