@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+.rew {
+  background-color: yellow;
+  color: red;
+}
+
+#ewq {
+  background-color: green;
+  color: white;
+}
+#rew {
+  background-color: orange;
+  color: black;;
+}

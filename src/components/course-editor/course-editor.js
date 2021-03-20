@@ -5,9 +5,11 @@ import {combineReducers, createStore} from "redux";
 import moduleReducer from "../../reducers/modules-reducer";
 import topicReducer from "../../reducers/topics-reducer";
 import lessonReducer from "../../reducers/lesson-reducer";
+import widgetReducer from "../../reducers/widgets-reducer";
 import {Provider} from "react-redux";
 import LessonTabs from "./lesson-tabs";
 import TopicPills from "./topic-pills";
+import WidgetList from "./widgets/widget-list";
 import {findCourseById} from "../../services/course-service";
 
 // const store = createStore(moduleReducer)
@@ -16,11 +18,12 @@ import {findCourseById} from "../../services/course-service";
 const reducer = combineReducers({
   moduleReducer: moduleReducer,
   lessonReducer: lessonReducer,
-  topicReducer: topicReducer
+  topicReducer: topicReducer,
+  widgetReducer: widgetReducer
 })
 const store = createStore(reducer)
 const CourseEditor = ({history}) => {
-  console.log(history.location.pathname)
+  // console.log(history.location.pathname)
   const {layout,courseId, moduleId} = useParams();
   const [courseName, setCourseName] = useState({title: ""})
   useEffect(() => {
@@ -37,7 +40,10 @@ const CourseEditor = ({history}) => {
             </div>
             <div className='col-8'>
               <LessonTabs/>
+              <br/>
               <TopicPills/>
+              <br/>
+              <WidgetList/>
             </div>
           </div>
         </div>

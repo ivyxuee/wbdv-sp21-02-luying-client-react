@@ -177,6 +177,7 @@ class CourseManager extends React.Component {
       {/*<CourseEditor />*/}
       {/*</Route>*/}
       <Route path={[
+        "/courses/:layout/editor/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId/widgets",
         "/courses/:layout/editor/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId",
         "/courses/:layout/editor/:courseId/modules/:moduleId/lessons/:lessonId/topics",
         "/courses/:layout/editor/:courseId/modules/:moduleId/lessons",
