@@ -99,7 +99,7 @@ const WidgetList = ({
             )
           }
         </ul>
-        {JSON.stringify(widgets)}
+        {/*{JSON.stringify(widgets)}*/}
       </div>
   )
 }
