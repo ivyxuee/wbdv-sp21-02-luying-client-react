@@ -47,9 +47,9 @@ const ParagraphWidget = ({widget, editing, updateWidget,deleteWidget}) => {
       }
       {
         !isEditing &&
-        <>
+        <p>
           {widget.text}
-        </>
+        </p>
       }
       </>
 
