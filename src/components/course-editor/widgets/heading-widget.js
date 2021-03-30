@@ -24,6 +24,8 @@ const HeadingWidget = ({widget, editing, updateWidget,deleteWidget}) => {
                         className="form-control">
                   <option value={"PARAGRAPH"}>PARAGRAPH</option>
                   <option value={"HEADING"}>HEADING</option>
+                  <option value={"IMAGE"}>IMAGE</option>
+                  <option value={"LIST"}>LIST</option>
                 </select>
                 <input
                     onChange={
