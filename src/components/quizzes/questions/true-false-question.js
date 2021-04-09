@@ -181,7 +181,7 @@ const TrueFalseQuestion = ({question}) => {
         >
           Grade
         </button>
-        {question.correct}
+        {/*{question.correct}*/}
         <hr/>
 
       </div>
