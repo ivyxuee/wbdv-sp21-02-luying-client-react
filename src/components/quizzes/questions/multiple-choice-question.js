@@ -40,6 +40,7 @@ const MultipleChoiceQuestion = ({question}) => {
                                className=''
                                name={question._id}
                                checked
+                               disabled
                         />
                         {choice}
                         <i className="fas fa-check float-right" style={{color: '#5ab83b'}}></i>
@@ -52,6 +53,7 @@ const MultipleChoiceQuestion = ({question}) => {
                         <input type='radio'
                                className=''
                                name={question._id}
+                               disabled
                         />
                         {choice}
                       </lable>
@@ -65,6 +67,7 @@ const MultipleChoiceQuestion = ({question}) => {
                                className=''
                                name={question._id}
                                checked
+                               disabled
                         />
                         {choice}
                         <i className="fas fa-times float-right" style={{color: '#d9161d'}}></i>
@@ -78,6 +81,7 @@ const MultipleChoiceQuestion = ({question}) => {
                         <input type='radio'
                                className=''
                                name={question._id}
+                               disabled
                         />
                         {choice}
                         <i className="fas fa-check float-right" style={{color: '#5ab83b'}}></i>
@@ -91,6 +95,7 @@ const MultipleChoiceQuestion = ({question}) => {
                         <input type='radio'
                                className=''
                                name={question._id}
+                               disabled
                         />
                         {choice}
                       </lable>
