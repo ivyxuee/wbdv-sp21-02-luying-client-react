@@ -44,6 +44,8 @@ const Quiz = () => {
           {
             graded &&
             <div>
+
+              <h2>submit score: {attempt.score}</h2>
               <p>
                 Submit quiz successfully! submit id: {attempt._id}
               </p>

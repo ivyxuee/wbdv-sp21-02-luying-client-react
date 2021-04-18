@@ -23,13 +23,14 @@ const MultipleChoiceQuestion = ({graded,question, questions, setQuestions}) => {
         <ul className='list-group'>
           {
             choices.map(choice => {
-              const ra = graded && question.correct === choice;
+              const ra =  question.correct === choice && graded;
               const swa = graded && question.correct !== answer && answer === choice;
               return (<li className={`list-group-item ${ra ? 'list-group-item-success' : ''} ${swa ? 'list-group-item-danger' : ''}`} key={count++}>
                 <label>
                   <input type='radio'
-                         value={choice} checked={answer === choice}
+                          checked={answer === choice}
                          disabled={graded}
+                         value={choice}
                          onChange={e => setAnswer(e.target.value)}/>
                   {choice}
                 </label>
