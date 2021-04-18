@@ -46,9 +46,9 @@ const Quiz = () => {
             <div>
 
               <h2>submit score: {attempt.score}</h2>
-              <p>
-                Submit quiz successfully! submit id: {attempt._id}
-              </p>
+              <h2>
+                submit id: {attempt._id}
+              </h2>
             </div>
           }
         </div>

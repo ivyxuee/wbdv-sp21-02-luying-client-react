@@ -10,7 +10,7 @@ const QuizAttempts = () => {
       .then(a => setAttempts(a));
   }, [quizId])
   return (
-    <div className='container-fluid'>
+    <div>
       <div className='row'>
         <h1>Attemps History</h1>
       </div>
